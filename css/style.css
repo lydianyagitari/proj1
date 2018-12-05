@@ -40,3 +40,16 @@ textarea {
     border: dashed;
     text-align: center;
 }
+input[type=artist]{
+  border: 5px solid rgb(29, 11, 110);
+  border-radius: 100px;
+
+  -webkit-appearance: none;
+}
+.amazingaudioplayer-image{
+  border: 0.5px solid rgb(37, 122, 233);
+  border-radius: 15px;
+  padding: 5px; 
+  width: 200px;
+  height: 150px; 
+}

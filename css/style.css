@@ -1,0 +1,42 @@
+
+#background {
+  background-size: cover;
+  height: 100%;
+  
+}
+
+
+body {
+	text-align: center;
+}
+
+h1 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h4 {
+	font-family: 'Courgette';
+}
+
+h3 {
+	font-family: 'Permanent Marker';
+}
+
+.jumbotron{
+  opacity: 0.98;
+  padding-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+    background-image: url("http://is5.mzstatic.com/image/pf/us/r30/Purple3/v4/36/2b/c3/362bc38c-e8bb-2add-be2a-cb55aa007094/mzl.qzhavdwz.png");
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: blue;
+    text-shadow: black 0.3em 0.3em 0.3em;
+}
+
+textarea {
+  resize: none;
+    border: dashed;
+    text-align: center;
+}

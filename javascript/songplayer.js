@@ -1,11 +1,11 @@
 
   var config = {
-    apiKey: "AIzaSyDnoIh_ls25YVOg3CkYj2B-OtheE3ds2gg",
-    authDomain: "project-1-1ea90.firebaseapp.com",
-    databaseURL: "https://project-1-1ea90.firebaseio.com",
-    projectId: "project-1-1ea90",
-    storageBucket: "",
-    messagingSenderId: "37482486000"
+    apiKey: "AIzaSyCJWu6_DsEPfreJ2YSeY_9WzI18_7jt3Hg",
+    authDomain: "music-playermp3.firebaseapp.com",
+    databaseURL: "https://music-playermp3.firebaseio.com",
+    projectId: "music-playermp3",
+    storageBucket: "music-playermp3.appspot.com",
+    messagingSenderId: "622074746789"
   };
   firebase.initializeApp(config);
 
@@ -30,7 +30,7 @@ $("#add").on("click",function(event){
   console.log("here")
   var artist = $("#inputArtist").val()
   var song = $("#inputSong").val()
-  var musicplayerApi; 
+  var deezerApi; 
   var flag = 0
   if (artist === "" && song === "" ){
     // console.log("no input")
@@ -38,21 +38,21 @@ $("#add").on("click",function(event){
   }
   else if (artist === ""){
     // console.log("song only")
-     musicplayerApi = "https://api.deezer.com/search?q=track:"+ '"' + song +'"'
+     deezerApi = "https://api.deezer.com/search?q=track:"+ '"' + song +'"'
 
   }
   else if (song === ""){
     // console.log("artist only")
-     musicplayerApi = "https://api.deezer.com/search?q=artist:"+ '"' + artist +'"'
+     deezerApi = "https://api.deezer.com/search?q=artist:"+ '"' + artist +'"'
   }
   else {
     // console.log("song & artist")
     // console.log("artist : " + artist)
     // console.log("song : " + song)
-   musicplayerApi = "https://api.deezer.com/search?q=artist:"+ '"' + artist +'"'  +" track:"+ '"' + song +'"' 
+   deezerApi = "https://api.deezer.com/search?q=artist:"+ '"' + artist +'"'  +" track:"+ '"' + song +'"' 
   }
-  //console.log(musicplayerApi)
-  play(musicplayerApi, flag)
+  //console.log(deezerApi)
+  play(deezerApi, flag)
   
 })
 
@@ -61,14 +61,14 @@ $("#add").on("click",function(event){
 function play(a , flag){
  
   
-  var musicplayerApi = a
-  console.log("play: " + musicplayerApi)
+  var deezerApi = a
+  console.log("play: " + deezerApi)
   var flag = flag;
   console.log(flag)
 
   $.ajax({
     headers : {"Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS"},
-    url : musicplayerApi,
+    url : deezerApi,
     method: "GET"
 
   }).then(function(response){

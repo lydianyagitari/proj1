@@ -1,2 +1,2 @@
 # proj1
-This is a music player app but apart from being just a  music player, the outstanding feature of this app is that it allow s a user to get top tracks and artists...the project solves "entertainment and boredom while getting top tracks"
+RAndom name generator app that can be used to find names for newborn babies Can be used to have fake names, nicknames when playing sports or any fun activity. You have three language option; *English (US) *English (UK) *Swahili (Kenya)

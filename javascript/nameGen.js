@@ -41,9 +41,8 @@ $("#add").on("click",function(event){
   else if (gender === "male"){
     // console.log("Male Name")
      nameFakeApi = "https://api.name-fake.com/english-united-states/male/:+ '"' + name +'"'
-
   }
-  else if (gender === "female"){
+  else if (gender === "female") {
     // console.log("Female name")
      nameFakeApi = "https://api.name-fake.com/english-united-states/female/:"+ '"' + name +'"'
   }

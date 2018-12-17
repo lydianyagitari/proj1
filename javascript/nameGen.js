@@ -33,11 +33,11 @@ $("#add").on("click",function(event){
   var prefLang = $("#prefLang").val()
   var gender = $("#gender").val()
   var nameFakeApi; 
-  var cloudTranslateApi; 
+  var carsApi; 
   var flag = 0
   if (prefLang !=== "" && gender === "" ){
     // console.log("no input")
-    cloudTranslateApi = "https://www.googleapis.com/auth/cloud-translation: + '"' + en-us +'"'
+    carsApi = "https://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key={your API key}"
     
     
   }

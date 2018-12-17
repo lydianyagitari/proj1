@@ -33,9 +33,12 @@ $("#add").on("click",function(event){
   var prefLang = $("#prefLang").val()
   var gender = $("#gender").val()
   var nameFakeApi; 
+  var cloudTranslateApi; 
   var flag = 0
-  if (prefLang === "" && gender === "" ){
+  if (prefLang !=== "" && gender === "" ){
     // console.log("no input")
+    cloudTranslateApi = "https://www.googleapis.com/auth/cloud-translation: + '"' + en-us +'"'
+    
     
   }
   else if (gender === "male"){

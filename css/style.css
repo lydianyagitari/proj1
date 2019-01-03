@@ -10,7 +10,7 @@ background-image: url("demo.jpg");
 
 body {
 	text-align: center;
-	background-image: url("demo.jpg");
+	background-image: url("data://ewhenson.files.wordpress.com/2016/01/backgrounds-dark-green-textures-2857798-1920x1080.jpg");
 }
 
 h1 {
@@ -22,7 +22,7 @@ h4 {
 }
 
 h3 {
-	font-family: 'Luminari, fantasy';
+  font-family: 'Luminari, fantasy';
 }
 
 

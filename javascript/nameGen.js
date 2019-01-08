@@ -28,29 +28,31 @@ var instaName = "";
 
 //grabbing the user input from html
 
-$("#add").on("click", function (event) {
+$("#search").on("click", function (event) {
   event.preventDefault()
   console.log("here")
   var prefLang = $("#prefLang").val()
   var gender = $("#gender").val()
   var nameFakeApi;
   var carsApi;
-  var flag = 0
+  var flag = "true"
+  var err;
   if (prefLang === "" && gender === "") {
     // console.log("no input")
-    carsApi = "https://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key={your API key}"
+    carsApi = "http://api.edmunds.com/v1/api/vehicle/modelyearrepository/foryearmakemodel?make=acura&model=mdx&year=2011&api_key=XXXXX&fmt=json"
 
 
   } else if (gender === "male") {
     // console.log("Male Name")
-    nameFakeApi = "http://www.babynamemap.com/api" + '"' + name + '"'
+    nameFakeApi = "https://uinames.com/api/?gender=male" + '"' + firstName&secondName + '"'
   } else if (gender === "female") {
     // console.log("Female name")
-    nameFakeApi = "https://api.name-fake.com/english-united-states/female/:" + '"' + name + '"'
+    nameFakeApi =" https://uinames.com/api/?gender=female"
+    + '"' +firstName&secondName  + '"'
   } else {
 
     // console.log("Unisex: " + name)
-    nameFakeApi = "https://www.nameapi.org/en/register/4de764b05c46126f8ac0786b1e02db9d-user1" + '"' + name + '"'
+    nameFakeApi = "https://www.nameapi.org/en/register/4de764b05c46126f8ac0786b1e02db9d-user1" + '"' + firstName&secondName+ '"'
   }
   //console.log(nameFakeApi)
   result(nameFakeApi, err)
@@ -67,13 +69,14 @@ function result(nameFakeApi, err) {
       headers: {
         "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS"
       },
-      url: "https://www.nameapi.org/en/register/",
+      url: "https://www.nameapi.org/en/register/4de764b05c46126f8ac0786b1e02db9d-user1",
       method: "GET",
-      success: function(results){
+      success: function(results)
+      {
         var gender = results.response.any;
         var prefLang = results.response.any;
-        $('#results').append(gender+ ' has ' + prefLang + ' name.');
-    }
+        $('#result').append(gender+ ' has ' + prefLang + ' name');
+    };
 
     }).then(function (response) {
         console.log(response)
@@ -93,7 +96,7 @@ function result(nameFakeApi, err) {
 
       });
       //function that will take input from html
-      function nameInput(searchName) {
+      function nameInput(nameDiv) {
         $('#nameDiv').empty()
         // appends result  
         $('#nameDiv').append()

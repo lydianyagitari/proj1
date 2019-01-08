@@ -3,10 +3,11 @@
   background-size: cover;
 background-image: url("demo.jpg");
   height: 100%;
+  color: blue
 	
   
 }
-
+ 
 
 body {
 	text-align: center;

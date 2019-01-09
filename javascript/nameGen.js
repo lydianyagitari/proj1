@@ -31,52 +31,61 @@ var instaName = "";
 $("#search").on("click", function (event) {
   event.preventDefault()
   console.log("here")
-  var prefLang = $("#prefLang").val()
+  var region = $("#region").val()
   var gender = $("#gender").val()
-  var nameFakeApi;
+  var nameGenApi;
+  var quote = quote;
+  var author = author;
   var flag = "true"
   var err;
-  if (prefLang === "" && gender === "") {
-     console.log("no input")
-    nameFakeApi = "https://uinames.com/api/?gender=male" + '"' + firstName&secondName + '"'
+  if (region === "" && gender === "") {
+    // console.log("no input")
+    nameGenApi = "https://uinames.com/api/?gender=male" + '"' + firstName&secondName + '"'
 
 
   } else if (gender === "male") {
-    console.log("Male Name")
-    nameFakeApi = "https://uinames.com/api/?gender=male" + '"' + name + '"'
+    // console.log("Male Name")
+    nameGenApi = "https://uinames.com/api/?gender=male" + '"' + firstName&secondName + '"'
   } else if (gender === "female") {
-    console.log("Female name")
-    nameFakeApi =" https://uinames.com/api/?gender=female"
+    // console.log("Female name")
+    nameGenApi =" https://uinames.com/api/?gender=female"
     + '"' +firstName&secondName  + '"'
   } else {
 
     // console.log("Unisex: " + name)
-    nameFakeApi = "https://uinames.com/api/?ext" + '"' + firstName&secondName+ '"'
+    nameGenApi = "https://uinames.com/api/?ext" + '"' + firstName&secondName+ '"'
   }
-  console.log(nameFakeApi)
-  result(nameFakeApi, err)
+  //console.log(nameGenApi)
+  result(nameGenApi, err)
 
 })
 
-// function that does the api
-function result(nameFakeApi, err) {
+//function that will take input from html
+function nameInput(nameDiv) {
+  $('#nameDiv').empty()
+  // appends result  
+  $('#nameDiv').append()
+}
+// function that does the names api
+function result(nameGenApi, err) {
 
 
 
   $.ajax({
       headers: {
-        "access-control-allow-headers":"Access-Control-Allow-Origin, Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept",
-        "Access-Control-Allow-Origin" : "*",
+        "access-control-allow-headers":"Access-Control-Allow-Origin, Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type,CORELATION_ID",
+
         "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
         contentType: 'application/x-www-form-urlencoded',
       },
-      url: "https://uinames.com/api/?ext",
-      method: "GET",
+      url: "https://uinames.com/api/?names",
+      method: "POST",
       success: function(result)
       {
-        var gender = result.response.any;
-        var prefLang = result.response.gender;
-        $('#result').append(gender+ ' has ' + prefLang + ' name');
+        var gender = result.response.gender;
+        var region = result.response.gender;
+        $('#result').append(gender+ ' has ' + region + ' name')
+        $('#result').html(gender+ ' has ' + region + ' name');
     }
 
     }).then(function (response) {
@@ -96,46 +105,46 @@ function result(nameFakeApi, err) {
 
 
       });
-      //function that will take input from html
-      function nameInput(nameDiv) {
-        $('#nameDiv').empty()
-        // appends result  
-        $('#nameDiv').append()
-      }
+      
 
       //define api values to be pulled
-      function writeUserData(prefLang, male, female) {
+      function writeUserData(region, maleName, femaleName) {
         connectionRef.push({
-          prefLang: prefLang,
-          maleName: male,
-          femaleName: female
+          region: region,
+          maleName: maleName,
+          femaleName: femaleName
 
         })
-       // function for Random Quotes 
-    function quote() {
-      $.ajax({
-        url: "https://api.forismatic.com/api/1.0/",
-        jsonp: "jsonp",
-        dataType: "jsonp",
-        data: {
-          method: "getQuote",
-          lang: "en",
-          format: "jsonp"
-        },
-        success: function (response) {
-          $('#quote').html(response.quoteText)
-          $('#author').html("<br/>&dash; " + response.quoteAuthor)
+        // function for Random Quotes 
 
-        }
-      });
+function quote() {
+  $.ajax({
+    url: "https://api.forismatic.com/api/1.0/",
+    jsonp: "jsonp",
+    dataType: "jsonp",
+    data: {
+      method: "getQuote",
+      lang: "en",
+      format: "jsonp"
     }
+    //.then(function(response){
+    //   var respObject = JSON.parse(response)
+    //   var quote = respObject.message.body.quote
+    //   console.log (quote)
+    //   $('#quoteButton').empty()
+    //   $('#quoteButton').append(quote)
+    ,
+    success: function(response) {
+      $('#quote').html(response.quoteText)
+      $('#author').html("<br/>&dash; " + response.quoteAuthor)
+      }
+  });
+}
 
-    $("#quoteButton").on("click", function () {
+$("#quoteButton").on("click", function() {
 
-      quote();
-    });
-
-    // end
-  }
-
-      };
+  quote();
+});
+    
+// end
+      }};

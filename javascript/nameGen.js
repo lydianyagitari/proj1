@@ -34,31 +34,29 @@ $("#search").on("click", function (event) {
   var prefLang = $("#prefLang").val()
   var gender = $("#gender").val()
   var nameFakeApi;
-  var carsApi;
   var flag = "true"
   var err;
   if (prefLang === "" && gender === "") {
-    // console.log("no input")
-    carsApi = "http://api.edmunds.com/v1/api/vehicle/modelyearrepository/foryearmakemodel?make=acura&model=mdx&year=2011&api_key=XXXXX&fmt=json"
+     console.log("no input")
+    nameFakeApi = "https://uinames.com/api/?gender=male" + '"' + firstName&secondName + '"'
 
 
   } else if (gender === "male") {
-    // console.log("Male Name")
-    nameFakeApi = "https://uinames.com/api/?gender=male" + '"' + firstName&secondName + '"'
+    console.log("Male Name")
+    nameFakeApi = "https://uinames.com/api/?gender=male" + '"' + name + '"'
   } else if (gender === "female") {
-    // console.log("Female name")
+    console.log("Female name")
     nameFakeApi =" https://uinames.com/api/?gender=female"
     + '"' +firstName&secondName  + '"'
   } else {
 
     // console.log("Unisex: " + name)
-    nameFakeApi = "https://www.nameapi.org/en/register/4de764b05c46126f8ac0786b1e02db9d-user1" + '"' + firstName&secondName+ '"'
+    nameFakeApi = "https://uinames.com/api/?ext" + '"' + firstName&secondName+ '"'
   }
-  //console.log(nameFakeApi)
+  console.log(nameFakeApi)
   result(nameFakeApi, err)
 
 })
-
 
 // function that does the api
 function result(nameFakeApi, err) {
@@ -67,16 +65,19 @@ function result(nameFakeApi, err) {
 
   $.ajax({
       headers: {
-        "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+        "access-control-allow-headers":"Access-Control-Allow-Origin, Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept",
+        "Access-Control-Allow-Origin" : "*",
+        "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+        contentType: 'application/x-www-form-urlencoded',
       },
-      url: "https://www.nameapi.org/en/register/4de764b05c46126f8ac0786b1e02db9d-user1",
+      url: "https://uinames.com/api/?ext",
       method: "GET",
-      success: function(results)
+      success: function(result)
       {
-        var gender = results.response.any;
-        var prefLang = results.response.any;
+        var gender = result.response.any;
+        var prefLang = result.response.gender;
         $('#result').append(gender+ ' has ' + prefLang + ' name');
-    };
+    }
 
     }).then(function (response) {
         console.log(response)
@@ -103,11 +104,38 @@ function result(nameFakeApi, err) {
       }
 
       //define api values to be pulled
-      function writeUserData(prefLang, maleName, femaleName) {
+      function writeUserData(prefLang, male, female) {
         connectionRef.push({
           prefLang: prefLang,
-          maleName: maleName,
-          femaleName: femaleName
+          maleName: male,
+          femaleName: female
 
         })
-      }};
+       // function for Random Quotes 
+    function quote() {
+      $.ajax({
+        url: "https://api.forismatic.com/api/1.0/",
+        jsonp: "jsonp",
+        dataType: "jsonp",
+        data: {
+          method: "getQuote",
+          lang: "en",
+          format: "jsonp"
+        },
+        success: function (response) {
+          $('#quote').html(response.quoteText)
+          $('#author').html("<br/>&dash; " + response.quoteAuthor)
+
+        }
+      });
+    }
+
+    $("#quoteButton").on("click", function () {
+
+      quote();
+    });
+
+    // end
+  }
+
+      };

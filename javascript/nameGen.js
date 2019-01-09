@@ -1,10 +1,3 @@
-//Pseudocode
-//PICKING BABY NAMES FOR COUPLES/NEW MUMS/NEW PARENTS
-//HELP PEOPLE WHO ARE LOOKING FOR NICKNAMES HAVE FUN
-//PARENTS GET TO PICK NAMES FOR THEIR BABIES AND SOLVES COUPLES ARGUING ABOUT NAMES TO GIVE THEIR KIDS
-//GIVES USERS A DAILY QUOTE
-//Author Lydia Nyagitari
-
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyDPssIPl_CcSfCeFF9o4-CfONy-crMhj24",
@@ -78,20 +71,19 @@ function result(nameGenApi, err) {
 
 
   $.ajax({
-      headers: {
-        "access-control-allow-headers":"Access-Control-Allow-Origin, Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type,CORELATION_ID",
+    headers: {
+      "access-control-allow-headers": "Access-Control-Allow-Origin, Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type,CORELATION_ID",
 
-        "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-        contentType: 'application/x-www-form-urlencoded',
-      },
-      url: "https://uinames.com/api/?names",
-      method: "POST",
-      success: function(result)
-      {
-        var gender = result.response.gender;
-        var region = result.response.gender;
-        $('#result').append(gender+ ' has ' + region + ' name')
-        $('#result').html(gender+ ' has ' + region + ' name');
+      "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+      contentType: 'application/x-www-form-urlencoded',
+    },
+    url: "https://uinames.com/api/?names",
+    method: "POST",
+    success: function (result) {
+      var gender = result.response.gender;
+      var region = result.response.gender;
+      $('#result').append(gender + ' has ' + region + ' name')
+      $('#result').html(gender + ' has ' + region + ' name');
     }
 
   }).then(function (response) {
@@ -122,7 +114,6 @@ function result(nameGenApi, err) {
 
     })
     // function for Random Quotes 
-    //GIVES USERS A DAILY QUOTE
 
     function quote() {
       $.ajax({
@@ -140,18 +131,6 @@ function result(nameGenApi, err) {
         }
       });
     }
-    //.then(function(response){
-    //   var respObject = JSON.parse(response)
-    //   var quote = respObject.message.body.quote
-    //   console.log (quote)
-    //   $('#quoteButton').empty()
-    //   $('#quoteButton').append(quote)
-    
-    success: function(response) {
-      $('#quote').html(response.quoteText)
-      $('#author').html("<br/>&dash; " + response.quoteAuthor)
-      }
-  
 
     $("#quoteButton").on("click", function () {
 

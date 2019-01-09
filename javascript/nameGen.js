@@ -1,3 +1,10 @@
+//Pseudocode
+//PICKING BABY NAMES FOR COUPLES/NEW MUMS/NEW PARENTS
+//HELP PEOPLE WHO ARE LOOKING FOR NICKNAMES HAVE FUN
+//PARENTS GET TO PICK NAMES FOR THEIR BABIES AND SOLVES COUPLES ARGUING ABOUT NAMES TO GIVE THEIR KIDS
+//GIVES USERS A DAILY QUOTE
+//Author Lydia Nyagitari
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyDPssIPl_CcSfCeFF9o4-CfONy-crMhj24",
@@ -114,6 +121,7 @@ function result(nameGenApi, err) {
 
     })
     // function for Random Quotes 
+    //GIVES USERS A DAILY QUOTE
 
     function quote() {
       $.ajax({

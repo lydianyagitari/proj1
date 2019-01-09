@@ -1,14 +1,13 @@
-
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDPssIPl_CcSfCeFF9o4-CfONy-crMhj24",
-    authDomain: "namegen-c9357.firebaseapp.com",
-    databaseURL: "https://namegen-c9357.firebaseio.com",
-    projectId: "namegen-c9357",
-    storageBucket: "",
-    messagingSenderId: "421971603291"
-  };
-  firebase.initializeApp(config);
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyDPssIPl_CcSfCeFF9o4-CfONy-crMhj24",
+  authDomain: "namegen-c9357.firebaseapp.com",
+  databaseURL: "https://namegen-c9357.firebaseio.com",
+  projectId: "namegen-c9357",
+  storageBucket: "",
+  messagingSenderId: "421971603291"
+};
+firebase.initializeApp(config);
 
 
 var firstName = []
@@ -40,20 +39,20 @@ $("#search").on("click", function (event) {
   var err;
   if (region === "" && gender === "") {
     // console.log("no input")
-    nameGenApi = "https://uinames.com/api/?gender=male" + '"' + firstName&secondName + '"'
+    nameGenApi = "https://uinames.com/api/?gender=male" + '"' + firstName & secondName + '"'
 
 
   } else if (gender === "male") {
     // console.log("Male Name")
-    nameGenApi = "https://uinames.com/api/?gender=male" + '"' + firstName&secondName + '"'
+    nameGenApi = "https://uinames.com/api/?gender=male" + '"' + firstName & secondName + '"'
   } else if (gender === "female") {
     // console.log("Female name")
-    nameGenApi =" https://uinames.com/api/?gender=female"
-    + '"' +firstName&secondName  + '"'
+    nameGenApi = " https://uinames.com/api/?gender=female" +
+      '"' + firstName & secondName + '"'
   } else {
 
     // console.log("Unisex: " + name)
-    nameGenApi = "https://uinames.com/api/?ext" + '"' + firstName&secondName+ '"'
+    nameGenApi = "https://uinames.com/api/?ext" + '"' + firstName & secondName + '"'
   }
   //console.log(nameGenApi)
   result(nameGenApi, err)
@@ -88,44 +87,50 @@ function result(nameGenApi, err) {
         $('#result').html(gender+ ' has ' + region + ' name');
     }
 
-    }).then(function (response) {
-        console.log(response)
-        if (result == null) {
-          result = response.data.slice(1);
-          counter = 0;
-        } else {
-          //newCounter = result.length+1;
+  }).then(function (response) {
+    console.log(response)
+    if (result == null) {
+      result = response.data.slice(1);
+      counter = 0;
+    } else {
+      //newCounter = result.length+1;
 
-          result = result.slice(0, counter).concat(response.data.slice(1)).concat(result.slice(counter));
-          counter;
-          result = result.concat(response.data);
+      result = result.slice(0, counter).concat(response.data.slice(1)).concat(result.slice(counter));
+      counter;
+      result = result.concat(response.data);
+    }
+
+
+
+
+  });
+
+
+  //define api values to be pulled
+  function writeUserData(region, maleName, femaleName) {
+    connectionRef.push({
+      region: region,
+      maleName: maleName,
+      femaleName: femaleName
+
+    })
+    // function for Random Quotes 
+
+    function quote() {
+      $.ajax({
+        url: "https://api.forismatic.com/api/1.0/",
+        jsonp: "jsonp",
+        dataType: "jsonp",
+        data: {
+          method: "getQuote",
+          lang: "en",
+          format: "jsonp"
+        },
+        success: function (response) {
+          $('#quote').html(response.quoteText)
+          $('#author').html("<br/>&dash; " + response.quoteAuthor)
         }
-
-
-
-
       });
-      
-
-      //define api values to be pulled
-      function writeUserData(region, maleName, femaleName) {
-        connectionRef.push({
-          region: region,
-          maleName: maleName,
-          femaleName: femaleName
-
-        })
-        // function for Random Quotes 
-
-function quote() {
-  $.ajax({
-    url: "https://api.forismatic.com/api/1.0/",
-    jsonp: "jsonp",
-    dataType: "jsonp",
-    data: {
-      method: "getQuote",
-      lang: "en",
-      format: "jsonp"
     }
     //.then(function(response){
     //   var respObject = JSON.parse(response)
@@ -133,18 +138,16 @@ function quote() {
     //   console.log (quote)
     //   $('#quoteButton').empty()
     //   $('#quoteButton').append(quote)
-    ,
+    
     success: function(response) {
       $('#quote').html(response.quoteText)
       $('#author').html("<br/>&dash; " + response.quoteAuthor)
       }
-  });
-}
+  
 
-$("#quoteButton").on("click", function() {
+    $("#quoteButton").on("click", function () {
 
-  quote();
-});
-    
-// end
-      }};
+      quote();
+    });
+  }
+};

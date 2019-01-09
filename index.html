@@ -35,8 +35,7 @@
                     <li class="nav-item active">
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://en.wiktionary.org/wiki/Appendix:Most_popular_given_names_by_country">Most
-                            Popular</a>
+                        <a class="nav-link" href="https://en.wiktionary.org/wiki/Appendix:Most_popular_given_names_by_country">Common Names</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -53,21 +52,7 @@
                 </ul>
             </div>
         </nav>
-        <div>
-            <form>
-                <label for="prefLanguage">Preferred Language</label>
-                <input type="defaultLang" class="form-control" id="prefLanguage" aria-describedby="emailHelp" placeholder="English United States">
-                <small id="Note" class="form-text text-muted">We'll never share your name with anyone else.</small>
-        </div>
-        <div class="form-group">
-            <label for="gender">Gender</label>
-            <input type="text" class="form-control" id="gender" placeholder="gender">
-        </div>
-        <br>
-        <button type="search" id="search" class="btn btn-primary">Generate Name</button>
-        </form>
-    </div>
-    <!-- Random Quotes starts here -->
+         <!-- Random Quotes Div-->
     <div class="quote-div">
         <p class="quote" id="quote" </p>
           <p class="author" id="author"></p>
@@ -75,10 +60,25 @@
   <div class="btn-container">
       <button class="btn btn-success" id="quoteButton">Quote of the Day</button>
   </div>
-  <!-- Random Quotes Ends Here -->
+  <!-- Div end -->
+        <div>
+            <form>
+                <label for="prefLanguage">Preferred Language</label>
+                <input type="defaultLang" class="form-control" id="prefLanguage" aria-describedby="emailHelp" placeholder="(Language)English United States">
+                <small id="Note" class="form-text text-muted">We'll never share your name with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <input type="text" class="form-control" id="gender" placeholder="Gender">
+        </div>
+        <br>
+        <button type="search" id="search" class="btn btn-primary">Generate Name</button>
+        </form>
+    </div>
+   
     <!--footer-->
     <footer class="footer">
-        <center>Copyright 2018</center>
+        <center>&copy;Copyright 2019</center>
     </footer>
     <!-- FIREBASE -->
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
@@ -89,3 +89,4 @@
     <script src="javascript/nameGen.js"></script>
 </body>
 </html>
+

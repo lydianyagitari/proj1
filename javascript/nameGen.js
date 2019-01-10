@@ -1,3 +1,10 @@
+//Pseudocode
+//PICKING BABY NAMES FOR COUPLES/NEW MUMS/NEW PARENTS
+//HELP PEOPLE WHO ARE LOOKING FOR NICKNAMES HAVE FUN
+//PARENTS GET TO PICK NAMES FOR THEIR BABIES AND SOLVES COUPLES ARGUING ABOUT NAMES TO GIVE THEIR KIDS
+//GIVES USERS A DAILY QUOTE
+//Author Lydia Nyagitari
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyDPssIPl_CcSfCeFF9o4-CfONy-crMhj24",
@@ -39,16 +46,18 @@ $("#search").on("click", function (event) {
   var err;
   if (region === "" && gender === "") {
     // console.log("no input")
-    nameGenApi = "https://uinames.com/api/?gender=male" + '"' + firstName & secondName + '"'
+    nameGenApi = "https://uinames.com/api/?gender=male" ;
+    // + '"' + firstName & secondName + '"'
 
 
   } else if (gender === "male") {
     // console.log("Male Name")
-    nameGenApi = "https://uinames.com/api/?gender=male" + '"' + firstName & secondName + '"'
+    nameGenApi = "https://uinames.com/api/?gender=male" 
+    // + '"' + firstName & secondName + '"'
   } else if (gender === "female") {
     // console.log("Female name")
-    nameGenApi = " https://uinames.com/api/?gender=female" +
-      '"' + firstName & secondName + '"'
+    nameGenApi = " https://uinames.com/api/?gender=female" 
+      // '"' + firstName & secondName + '"'
   } else {
 
     // console.log("Unisex: " + name)
@@ -78,26 +87,32 @@ function result(nameGenApi, err) {
       contentType: 'application/x-www-form-urlencoded',
     },
     url: "https://uinames.com/api/?names",
-    method: "POST",
-    success: function (result) {
-      var gender = result.response.gender;
-      var region = result.response.gender;
-      $('#result').append(gender + ' has ' + region + ' name')
-      $('#result').html(gender + ' has ' + region + ' name');
-    }
+    method: "GET"
+    
+    // ,
+    // success: function (result) {
+    //   var gender = result.response.gender;
+    //   var region = result.response.gender;
+    //   $('#result').append(gender + ' has ' + region + ' name')
+    //   $('#result').html(gender + ' has ' + region + ' name');
+    // }
 
   }).then(function (response) {
-    console.log(response)
-    if (result == null) {
-      result = response.data.slice(1);
-      counter = 0;
-    } else {
-      //newCounter = result.length+1;
+    console.log(response.name)
+    var theName = $("<p>");
+    theName.text(response.name);
 
-      result = result.slice(0, counter).concat(response.data.slice(1)).concat(result.slice(counter));
-      counter;
-      result = result.concat(response.data);
-    }
+    $("#theName").append(theName);
+    // if (result == null) {
+    //   result = response.data.slice(1);
+    //   counter = 0;
+    // } else {
+    //   //newCounter = result.length+1;
+
+    //   result = result.slice(0, counter).concat(response.data.slice(1)).concat(result.slice(counter));
+    //   counter;
+    //   result = result.concat(response.data);
+    // }
 
 
 
@@ -114,27 +129,37 @@ function result(nameGenApi, err) {
 
     })
     // function for Random Quotes 
+    //GIVES USERS A DAILY QUOTE
 
-    function quote() {
-      $.ajax({
-        url: "https://api.forismatic.com/api/1.0/",
-        jsonp: "jsonp",
-        dataType: "jsonp",
-        data: {
-          method: "getQuote",
-          lang: "en",
-          format: "jsonp"
-        },
-        success: function (response) {
-          $('#quote').html(response.quoteText)
-          $('#author').html("<br/>&dash; " + response.quoteAuthor)
-        }
-      });
-    }
-
-    $("#quoteButton").on("click", function () {
-
-      quote();
+    $('#quotebutton').click(function() {
+      $.getJSON("https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=?")
+        .done(update)
+        .fail(handleErr);
     });
+    
+    $('#quotebutton').click(function() {
+      $.ajax({
+          url: "https://api.forismatic.com/api/1.0/",
+          jsonp: "jsonp",
+          dataType: "jsonp",
+          data: {
+            method: "getQuote",
+            lang: "en",
+            format: "jsonp"
+          }
+        })
+        .done(update)
+        .fail(handleErr);
+    });
+    
+    function update(response) {
+      $('#logquote').prepend('<pre>' + $('#respond').html() + '</pre>');
+    
+      $('#respond').html(JSON.stringify(response));
+    }
+    
+    function handleErr(jqxhr, textStatus, err) {
+      console.log("Request Failed: " + textStatus + ", " + err);
+    }
   }
 };

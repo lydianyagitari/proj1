@@ -35,6 +35,17 @@ body{
 #quoteGenius{
   color: white;
 }
+#resultContainer{
+  width:75%;
+	background: black;
+	padding:10px;
+	margin:30px auto;
+	text-align: center;
+  height:100;
+}
+#theName{
+  color: white;
+}
 #buttonContainer{
 	width: 100%;
 	text-align: center;

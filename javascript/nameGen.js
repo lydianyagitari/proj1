@@ -65,6 +65,7 @@ var instaName = "";
   
   
 // });//end document ready
+// function for random Quotes
 const endpoint = 'https://api.whatdoestrumpthink.com/api/v1/quotes/random';
  function randomQuote() {
    fetch(endpoint)
@@ -80,6 +81,7 @@ const endpoint = 'https://api.whatdoestrumpthink.com/api/v1/quotes/random';
    });
    
   }
+  //function to display Quotes
   function displayQuote(quote){
     const quoteGenius = 
     document.querySelector('#quoteGenius');
@@ -98,14 +100,13 @@ const endpoint = 'https://api.whatdoestrumpthink.com/api/v1/quotes/random';
 $("#search").on("click", function (event) {
   event.preventDefault()
   console.log("here")
-  var region = $("#region").val()
   var gender = $("#gender").val()
   var nameGenApi;
   var quote = quote;
   var author = author;
   var flag = "true"
   var err;
-  if (region === "" && gender === "") {
+  if ( gender === "") {
     // console.log("no input")
     nameGenApi = "https://uinames.com/api/?gender=male" ;
     // + '"' + firstName & secondName + '"'
@@ -131,13 +132,13 @@ $("#search").on("click", function (event) {
 
 //function that will take input from html
 function nameInput(nameDiv) {
-  $('#nameDiv').empty()
+  $('#theName').empty()
   // appends result  
-  $('#nameDiv').append()
+  $('#theName').append()
 }
 // function that does the names api
 function result(nameGenApi, err) {
-
+console.log("theName")
 
 
   $.ajax({
@@ -181,46 +182,8 @@ function result(nameGenApi, err) {
   });
 
 
-  //define api values to be pulled
-  function writeUserData(region, maleName, femaleName) {
-    connectionRef.push({
-      region: region,
-      maleName: maleName,
-      femaleName: femaleName
+  
 
-    })
-    // function for Random Quotes 
-    //GIVES USERS A DAILY QUOTE
-
-    $('#quotebutton').click(function() {
-      $.getJSON("https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=?")
-        .done(update)
-        .fail(handleErr);
-    });
     
-    $('#quotebutton').click(function() {
-      $.ajax({
-          url: "https://api.forismatic.com/api/1.0/",
-          jsonp: "jsonp",
-          dataType: "jsonp",
-          data: {
-            method: "getQuote",
-            lang: "en",
-            format: "jsonp"
-          }
-        })
-        .done(update)
-        .fail(handleErr);
-    });
-    
-    function update(response) {
-      $('#logquote').prepend('<pre>' + $('#respond').html() + '</pre>');
-    
-      $('#respond').html(JSON.stringify(response));
-    }
-    
-    function handleErr(jqxhr, textStatus, err) {
-      console.log("Request Failed: " + textStatus + ", " + err);
-    }
-  }
+  
 };

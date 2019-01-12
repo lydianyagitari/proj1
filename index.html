@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -55,7 +56,7 @@
     <div class="quote-div">
         <p class="quote" id="quote" ></p>
           <p class="author" id="author"></p>
-          <div  id="theName" ></div>
+          
           
   </div>
   
@@ -67,19 +68,21 @@
   <!-- Div end -->
         <div>
             <form>
-                <label for="region">Preferred Region</label>
+                
                 <input type="defaultLang" class="form-control" id="region" aria-describedby="emailHelp" placeholder="(Region)English United States">
-                <small id="Note" class="form-text text-muted">We'll never share your name with anyone else.</small>
+                <small id="Note" class="form-text text-muted">Select Gender below to refine your search.</small>
         </div>
+        <br>
         <div class="form-group">
-            <label for="gender">Gender</label>
+            
             <input type="text" class="form-control" id="gender" placeholder="Gender">
         </div>
         <br>
         <button type="search" id="search" class="btn btn-primary">Generate Name</button>
         </form>
     </div>
-   
+    <div class="w3-panel w3-card" id="theName" ><h5>Your Results</h5></div>
+    <br>
     <!--footer-->
     <footer class="footer">
         <center>&copy;Copyright 2019</center>

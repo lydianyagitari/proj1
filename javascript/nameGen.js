@@ -23,77 +23,36 @@ var counter = 0;
 var result;
 var instaName = "";
 
-// $(document).ready(function(){
-//   var quoteSource=[
-//   {
-//     quote: "Start by doing what's necessary; then do what's possible; and suddenly you are doing the impossible.",
-//     name:"Francis of Assisi"
-//     },
-//     {
-//       quote:"Believe you can and you're halfway there.",
-//       name:"Theodore Roosevelt"
-//     },
-//   ];
-//   $('#quoteButton').click(function(evt){
-//     //define the containers of the info we target
-//     var quote = $('#quoteContainer p').text();
-//     var quoteGenius = $('#quoteGenius').text();
-//     //prevent browser's default action
-//     evt.preventDefault();
-//     //getting a new random number to attach to a quote and setting a limit
-//     var sourceLength = quoteSource.length;
-//     var randomNumber= Math.floor(Math.random()*sourceLength);
-//     //set a new quote
-//     for(i=0;i<=sourceLength;i+=1){
-//     var newQuoteText = quoteSource[randomNumber].quote;
-//     var newQuoteGenius = quoteSource[randomNumber].name;
-//     //console.log(newQuoteText,newQuoteGenius);
-//     var timeAnimation = 500;
-//     var quoteContainer = $('#quoteContainer');
-//     //fade out animation with callback
-//     quoteContainer.fadeOut(timeAnimation, function(){
-//       quoteContainer.html('');
-//       quoteContainer.append('<p>'+newQuoteText+'</p>'+'<p id="quoteGenius">'+'-								'+newQuoteGenius+'</p>');
-//       //fadein animation.
-//       quoteContainer.fadeIn(timeAnimation);
-//     });  
-    
-//     break;
-//   };//end for loop
 
-// });//end quoteButton function
-  
-  
-// });//end document ready
 // function for random Quotes
 const endpoint = 'https://api.whatdoestrumpthink.com/api/v1/quotes/random';
- function randomQuote() {
-   fetch(endpoint)
-   .then(function (response){
-     return response.json()
-   })
-   .then(function(data)
-   {
-     displayQuote(data.message);
-   })
-   .catch(function(){
-     console.log("An error occurred");
-   });
-   
-  }
-  //function to display Quotes
-  function displayQuote(quote){
-    const quoteGenius = 
+
+function randomQuote() {
+  fetch(endpoint)
+    .then(function (response) {
+      return response.json()
+    })
+    .then(function (data) {
+      displayQuote(data.message);
+    })
+    .catch(function () {
+      console.log("An error occurred");
+    });
+
+}
+//function to display Quotes
+function displayQuote(quote) {
+  const quoteGenius =
     document.querySelector('#quoteGenius');
-    quoteGenius.textContent = quote;
+  quoteGenius.textContent = quote;
 
-  }
+}
 
-  const quoteButton = 
+const quoteButton =
   document.querySelector('#quoteButton');
-  quoteButton.addEventListener('click', randomQuote);
-  randomQuote();
- 
+quoteButton.addEventListener('click', randomQuote);
+randomQuote();
+
 
 //grabbing the user input from html
 
@@ -106,20 +65,20 @@ $("#search").on("click", function (event) {
   var author = author;
   var flag = "true"
   var err;
-  if ( gender === "") {
+  if (gender === "") {
     // console.log("no input")
-    nameGenApi = "https://uinames.com/api/?gender=male" ;
+    nameGenApi = "https://uinames.com/api/?gender=male";
     // + '"' + firstName & secondName + '"'
 
 
   } else if (gender === "male") {
-     console.log("Male Name")
-    nameGenApi = "https://uinames.com/api/?gender=male" 
-    + '"' + firstName & secondName + '"'
+    console.log("Male Name")
+    nameGenApi = "https://uinames.com/api/?gender=male" +
+      '"' + firstName & secondName + '"'
   } else if (gender === "female") {
     console.log("Female name")
-    nameGenApi = " https://uinames.com/api/?gender=female" 
-     '"' + firstName & secondName + '"'
+    nameGenApi = " https://uinames.com/api/?gender=female"
+    '"' + firstName & secondName + '"'
   } else {
 
     //console.log("Unisex: " + name)
@@ -131,14 +90,14 @@ $("#search").on("click", function (event) {
 })
 
 //function that will take input from html
-function nameInput(nameDiv) {
+function nameInput(theName) {
   $('#theName').empty()
   // appends result  
   $('#theName').append()
 }
 // function that does the names api
 function result(nameGenApi, err) {
-console.log("theName")
+  console.log("theName")
 
 
   $.ajax({
@@ -150,14 +109,14 @@ console.log("theName")
     },
     url: "https://uinames.com/api/?names",
     method: "GET"
-    
-    ,
-     success: function (result) {
-    var gender = result.response.gender;
+
+      ,
+    success: function (result) {
+      var gender = result.response.gender;
       var region = result.response.gender;
-     $('#result').append(gender + ' has ' + region + ' name')
-     $('#result').html(gender + ' has ' + region + ' name');
-   }
+      $('#result').append(gender + ' has ' + region + ' name')
+      $('#result').html(gender + ' has ' + region + ' name');
+    }
 
   }).then(function (response) {
     console.log(response.name)
@@ -165,16 +124,7 @@ console.log("theName")
     theName.text(response.name);
 
     $("#theName").append(theName);
-    // if (result == null) {
-    //   result = response.data.slice(1);
-    //   counter = 0;
-    // } else {
-    //   //newCounter = result.length+1;
 
-    //   result = result.slice(0, counter).concat(response.data.slice(1)).concat(result.slice(counter));
-    //   counter;
-    //   result = result.concat(response.data);
-    // }
 
 
 
@@ -182,8 +132,8 @@ console.log("theName")
   });
 
 
-  
 
-    
-  
+
+
+
 };
